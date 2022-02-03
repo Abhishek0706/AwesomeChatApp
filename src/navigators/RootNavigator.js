@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from '../screens/LoginScreen';
 import ChatScreen from '../screens/ChatScreen';
@@ -22,7 +22,7 @@ const RootNavigator = () => {
         component={ChatScreen}
         options={{
           headerBackVisible: false,
-          headerStyle: {backgroundColor: Colors.headerColor},
+          headerStyle: { backgroundColor: Colors.headerColor },
         }}
       />
     </Stack.Navigator>

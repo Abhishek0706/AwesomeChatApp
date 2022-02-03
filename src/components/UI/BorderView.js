@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-const BorderView = ({style, ...props}) => {
+const BorderView = ({ style, ...props }) => {
   return <View style={[styles.box, style]}>{props.children}</View>;
 };
 

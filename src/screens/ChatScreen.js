@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
-import {View, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import moment from 'moment';
 import firestore from '@react-native-firebase/firestore';
 import DeviceInfo from 'react-native-device-info';
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import MessageInput from '../components/MessageInput';
 import Message from '../components/Message';
 
-const ChatScreen = ({route, navigation}) => {
+const ChatScreen = ({ route, navigation }) => {
   const [messages, setMessage] = useState([]);
   const [loading, setLoading] = useState(true);
 

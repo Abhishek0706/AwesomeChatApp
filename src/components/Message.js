@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View, StyleSheet} from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
 
-const Message = ({message, isOwner}) => {
+const Message = ({ message, isOwner }) => {
   return (
     <View
       style={[
         styles.messageContainer,
         isOwner ? styles.messageContainerRight : styles.messageContainerLeft,
-      ]}>
+      ]}
+    >
       <Text style={[styles.text, isOwner ? styles.textRight : styles.textLeft]}>
         {message}
       </Text>

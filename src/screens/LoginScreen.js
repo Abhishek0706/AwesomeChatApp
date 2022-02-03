@@ -1,8 +1,7 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
-  Dimension,
   TextInput,
   Dimensions,
   KeyboardAvoidingView,
@@ -14,11 +13,11 @@ import Button from '../components/UI/Button';
 import CardView from '../components/UI/CardView';
 import BorderView from '../components/UI/BorderView';
 
-const LoginScreen = ({route, navigation}) => {
+const LoginScreen = ({ route, navigation }) => {
   const [roomId, setRoomId] = useState('');
 
   const openRoomHandler = () => {
-    navigation.navigate('Chat', {roomId: roomId});
+    navigation.navigate('Chat', { roomId: roomId });
   };
   const changeRoomTextHandler = value => {
     setRoomId(value);
@@ -27,7 +26,8 @@ const LoginScreen = ({route, navigation}) => {
   return (
     <View style={styles.screen}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
         <CardView>
           <View style={styles.cardViewContainer}>
             <BorderView style={styles.textContainer}>

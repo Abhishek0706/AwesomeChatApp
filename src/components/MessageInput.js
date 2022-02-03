@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
 import BorderView from './UI/BorderView';
 
-const MessageInput = ({onPressSend}) => {
+const MessageInput = ({ onPressSend }) => {
   const [message, setMessage] = useState('');
 
   const changeTextHandler = value => {
@@ -31,7 +31,8 @@ const MessageInput = ({onPressSend}) => {
       </View>
       <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={submitMessageHandler}>
+        onPress={submitMessageHandler}
+      >
         <Icon name="send" size={25} color={'black'} />
       </TouchableOpacity>
     </BorderView>
