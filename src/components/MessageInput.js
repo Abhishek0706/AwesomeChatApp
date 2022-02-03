@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
+import BorderView from './UI/BorderView';
 
 const MessageInput = ({onPressSend}) => {
   const [message, setMessage] = useState('');
@@ -19,7 +20,7 @@ const MessageInput = ({onPressSend}) => {
   };
 
   return (
-    <View style={styles.messageInputContainer}>
+    <BorderView style={styles.messageInputContainer}>
       <View style={styles.textInputContainer}>
         <TextInput
           value={message}
@@ -33,7 +34,7 @@ const MessageInput = ({onPressSend}) => {
         onPress={submitMessageHandler}>
         <Icon name="send" size={25} color={'black'} />
       </TouchableOpacity>
-    </View>
+    </BorderView>
   );
 };
 
@@ -46,9 +47,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     height: 50,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'lightgrey',
     borderRadius: 25,
   },
   textInputContainer: {
