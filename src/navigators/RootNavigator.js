@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import LoginScreen from '../screens/LoginScreen';
 import ChatScreen from '../screens/ChatScreen';
+import Colors from '../constants/Colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const RootNavigator = () => {
         component={ChatScreen}
         options={{
           headerBackVisible: false,
+          headerStyle: {backgroundColor: Colors.headerColor},
         }}
       />
     </Stack.Navigator>
