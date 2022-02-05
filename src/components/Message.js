@@ -10,8 +10,7 @@ const Message = ({ message, isOwner }) => {
       style={[
         styles.messageContainer,
         isOwner ? styles.messageContainerRight : styles.messageContainerLeft,
-      ]}
-    >
+      ]}>
       <Text style={[styles.text, isOwner ? styles.textRight : styles.textLeft]}>
         {message}
       </Text>
@@ -29,27 +28,29 @@ const styles = StyleSheet.create({
     maxWidth: '80%',
     borderRadius: 20,
     justifyContent: 'center',
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   messageContainerLeft: {
     alignSelf: 'flex-start',
     borderBottomLeftRadius: 0,
-    backgroundColor: Colors.lightMessageBackground,
+    backgroundColor: Colors.recievedMessageBackground,
   },
   messageContainerRight: {
     alignSelf: 'flex-end',
     borderBottomRightRadius: 0,
-    backgroundColor: Colors.darkMessageBackground,
+    backgroundColor: Colors.sentMessageBackground,
   },
   text: {
-    color: '#333',
     lineHeight: 25,
   },
   textLeft: {
     textAlign: 'left',
+    color: 'black',
   },
   textRight: {
     textAlign: 'right',
+    color: 'white',
   },
 });
 

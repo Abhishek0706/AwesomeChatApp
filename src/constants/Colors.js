@@ -1,6 +1,6 @@
 export default {
-  primaryColor: 'mediumblue',
-  headerColor: 'lightblue',
-  darkMessageBackground: 'blanchedalmond',
-  lightMessageBackground: 'cornsilk',
+  primaryColor: 'dodgerblue',
+  secondaryColor: 'lightgrey',
+  sentMessageBackground: 'dodgerblue',
+  recievedMessageBackground: 'lightgrey',
 };

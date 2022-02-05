@@ -19,19 +19,19 @@ const ChatScreen = ({ route, navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: roomId,
+      title: roomId,
     });
   }, []);
 
   useEffect(() => {
     const unsubscribe = firestore()
-      .collection(roomId)
+      .collection(`ChatRooms/${roomId}/messages`)
       .onSnapshot(querySnapshot => {
         const messages = [];
         querySnapshot.forEach(dataSnapshot => {
           messages.push({
             id: dataSnapshot.id,
-            value: dataSnapshot.data().message,
+            message: dataSnapshot.data().message,
             userId: dataSnapshot.data().userId,
           });
         });
@@ -47,8 +47,8 @@ const ChatScreen = ({ route, navigation }) => {
   const sendMessageHandler = message => {
     if (message) {
       firestore()
-        .collection(roomId)
-        .doc(moment().format('YYYY-MM-DD-hh-mm-sssss'))
+        .collection(`ChatRooms/${roomId}/messages`)
+        .doc(moment().format('YYYY-MM-DD-HH-mm-sssss'))
         .set({
           message: message,
           userId: userId,
@@ -61,7 +61,7 @@ const ChatScreen = ({ route, navigation }) => {
 
     return (
       <View style={styles.messageContainer}>
-        <Message message={itemData.item.value} isOwner={isOwner} />
+        <Message message={itemData.item.message} isOwner={isOwner} />
       </View>
     );
   };
@@ -87,10 +87,12 @@ const ChatScreen = ({ route, navigation }) => {
     );
   }
 };
+
 ChatScreen.propTypes = {
   route: PropTypes.object,
   navigation: PropTypes.object,
 };
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
