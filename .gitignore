@@ -61,4 +61,4 @@ buck-out/
 
 # aes key
 # you should un-comment the below line
-secretKey.js
+# secretKey.js

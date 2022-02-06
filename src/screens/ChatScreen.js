@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import MessageInput from '../components/MessageInput';
 import Message from '../components/Message';
+import { Encrypt, Decrypt } from '../utils/aes';
 
 const ChatScreen = ({ route, navigation }) => {
   const [messages, setMessage] = useState([]);
@@ -50,7 +51,7 @@ const ChatScreen = ({ route, navigation }) => {
         .collection(`ChatRooms/${roomId}/messages`)
         .doc(moment().format('YYYY-MM-DD-HH-mm-sssss'))
         .set({
-          message: message,
+          message: Encrypt(message),
           userId: userId,
         });
     }
@@ -61,7 +62,7 @@ const ChatScreen = ({ route, navigation }) => {
 
     return (
       <View style={styles.messageContainer}>
-        <Message message={itemData.item.message} isOwner={isOwner} />
+        <Message message={Decrypt(itemData.item.message)} isOwner={isOwner} />
       </View>
     );
   };
