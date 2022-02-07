@@ -49,3 +49,8 @@ Vector Icons : https://github.com/oblador/react-native-vector-icons
 
 Ionicons : https://ionic.io/ionicons
 
+
+## Data Encryption
+
+CryptoJs : https://www.npmjs.com/package/crypto-js
+
