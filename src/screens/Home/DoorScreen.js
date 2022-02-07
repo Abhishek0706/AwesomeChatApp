@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Button from '../components/UI/Button';
-import CardView from '../components/UI/CardView';
-import BorderView from '../components/UI/BorderView';
+import Button from '../../components/UI/Button';
+import CardView from '../../components/UI/CardView';
+import BorderView from '../../components/UI/BorderView';
 
-const HomeScreen = ({ route, navigation }) => {
+const DoorScreen = ({ route, navigation }) => {
   const [roomId, setRoomId] = useState('');
 
   const openRoomHandler = () => {
@@ -26,8 +26,7 @@ const HomeScreen = ({ route, navigation }) => {
   return (
     <View style={styles.screen}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <CardView>
           <View style={styles.cardViewContainer}>
             <BorderView style={styles.textContainer}>
@@ -46,7 +45,7 @@ const HomeScreen = ({ route, navigation }) => {
   );
 };
 
-HomeScreen.propTypes = {
+DoorScreen.propTypes = {
   route: PropTypes.object,
   navigation: PropTypes.object,
 };
@@ -72,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default DoorScreen;

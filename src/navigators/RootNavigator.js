@@ -1,37 +1,29 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useSelector } from 'react-redux';
 
-import HomeScreen from '../screens/HomeScreen';
-import ChatScreen from '../screens/ChatScreen';
-import Colors from '../constants/Colors';
-import { Platform } from 'react-native';
+import StartupScreen from '../screens/StartupScreen';
+import LoginScreen from '../screens/LoginScreen';
+import HomeNavigator from './HomeNavigator';
+import LoginStatus from '../constants/LoginStatus';
 
 const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
+  const { loginStatus } = useSelector(state => state.auth);
+  // const loginStatus = LoginStatus.CHECKING;
+
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor:
-              Platform.OS === 'android'
-                ? Colors.primaryColor
-                : Colors.secondaryColor,
-          },
-          headerTintColor: Platform.OS === 'android' ? 'white' : 'black',
-        }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {loginStatus === LoginStatus.CHECKING && (
+        <Stack.Screen name={'Startup'} component={StartupScreen} />
+      )}
+      {loginStatus === LoginStatus.LOGGEDOUT && (
+        <Stack.Screen name={'Login'} component={LoginScreen} />
+      )}
+      {loginStatus === LoginStatus.LOGGEDIN && (
+        <Stack.Screen name={'Home'} component={HomeNavigator} />
+      )}
     </Stack.Navigator>
   );
 };

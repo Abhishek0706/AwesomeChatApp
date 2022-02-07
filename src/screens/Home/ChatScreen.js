@@ -5,9 +5,10 @@ import firestore from '@react-native-firebase/firestore';
 import DeviceInfo from 'react-native-device-info';
 import PropTypes from 'prop-types';
 
-import MessageInput from '../components/MessageInput';
-import Message from '../components/Message';
-import { Encrypt, Decrypt } from '../utils/aes';
+import MessageInput from '../../components/MessageInput';
+import Message from '../../components/Message';
+import { Encrypt, Decrypt } from '../../utils/aes';
+import Colors from '../../constants/Colors';
 
 const ChatScreen = ({ route, navigation }) => {
   const [messages, setMessage] = useState([]);
@@ -70,7 +71,7 @@ const ChatScreen = ({ route, navigation }) => {
   if (loading) {
     return (
       <View style={styles.centeredView}>
-        <ActivityIndicator size={'large'} />
+        <ActivityIndicator size={'large'} color={Colors.primaryColor} />
       </View>
     );
   } else {
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
 });
 
