@@ -1,24 +1,23 @@
 module.exports = {
-    "env": {
-        "es2021": true,
-        "node": true
+  settings: {
+    react: {
+      version: 'detect',
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "prettier"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+  },
+  env: {
+    es2021: true,
+    node: true,
+  },
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        'no-unused-vars': 'warn'
-    }
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react'],
+  rules: {
+    'no-unused-vars': 'warn',
+  },
 };

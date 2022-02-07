@@ -13,7 +13,7 @@ import Button from '../components/UI/Button';
 import CardView from '../components/UI/CardView';
 import BorderView from '../components/UI/BorderView';
 
-const LoginScreen = ({ route, navigation }) => {
+const LoginScreen = ({ navigation }) => {
   const [roomId, setRoomId] = useState('');
 
   const openRoomHandler = () => {
@@ -26,8 +26,7 @@ const LoginScreen = ({ route, navigation }) => {
   return (
     <View style={styles.screen}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <CardView>
           <View style={styles.cardViewContainer}>
             <BorderView style={styles.textContainer}>
