@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import LoginScreen from '../screens/LoginScreen';
+import HomeScreen from '../screens/HomeScreen';
 import ChatScreen from '../screens/ChatScreen';
 import Colors from '../constants/Colors';
 import { Platform } from 'react-native';
@@ -10,10 +10,10 @@ const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
-        name="Login"
-        component={LoginScreen}
+        name="Home"
+        component={HomeScreen}
         options={{
           headerShown: false,
         }}

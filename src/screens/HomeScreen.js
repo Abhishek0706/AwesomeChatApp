@@ -13,7 +13,7 @@ import Button from '../components/UI/Button';
 import CardView from '../components/UI/CardView';
 import BorderView from '../components/UI/BorderView';
 
-const LoginScreen = ({ route, navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
   const [roomId, setRoomId] = useState('');
 
   const openRoomHandler = () => {
@@ -46,7 +46,7 @@ const LoginScreen = ({ route, navigation }) => {
   );
 };
 
-LoginScreen.propTypes = {
+HomeScreen.propTypes = {
   route: PropTypes.object,
   navigation: PropTypes.object,
 };
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default HomeScreen;
