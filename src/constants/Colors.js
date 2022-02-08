@@ -3,4 +3,5 @@ export default {
   secondaryColor: 'lightgrey',
   sentMessageBackground: 'dodgerblue',
   recievedMessageBackground: 'lightgrey',
+  logoutButton: 'red',
 };

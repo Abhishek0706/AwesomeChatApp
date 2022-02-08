@@ -1,12 +1,16 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './navigators/RootNavigator';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
