@@ -3,25 +3,39 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
 
 import StartupScreen from '../screens/StartupScreen';
-import LoginScreen from '../screens/LoginScreen';
+import AuthScreen from '../screens/AuthScreen';
 import HomeNavigator from './HomeNavigator';
-import LoginStatus from '../constants/LoginStatus';
+import AuthStatus from '../constants/AuthStatus';
+import Colors from '../constants/Colors';
+import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
-  const { loginStatus } = useSelector(state => state.auth);
-  // const loginStatus = LoginStatus.CHECKING;
+  const { authStatus } = useSelector(state => state.auth);
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {loginStatus === LoginStatus.CHECKING && (
+      {authStatus === AuthStatus.CHECKING && (
         <Stack.Screen name={'Startup'} component={StartupScreen} />
       )}
-      {loginStatus === LoginStatus.LOGGEDOUT && (
-        <Stack.Screen name={'Login'} component={LoginScreen} />
+      {authStatus === AuthStatus.LOGGEDOUT && (
+        <Stack.Screen
+          name={'Auth'}
+          component={AuthScreen}
+          options={{
+            headerShown: true,
+            title: 'Authenticate',
+            headerStyle: {
+              backgroundColor:
+                Platform.OS === 'android' ? Colors.primaryColor : 'white',
+            },
+            headerTintColor:
+              Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+          }}
+        />
       )}
-      {loginStatus === LoginStatus.LOGGEDIN && (
+      {authStatus === AuthStatus.LOGGEDIN && (
         <Stack.Screen name={'Home'} component={HomeNavigator} />
       )}
     </Stack.Navigator>

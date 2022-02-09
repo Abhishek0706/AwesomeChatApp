@@ -32,11 +32,10 @@ const HomeNavigator = () => {
         headerTitleAlign: 'left',
         headerStyle: {
           backgroundColor:
-            Platform.OS === 'android'
-              ? Colors.primaryColor
-              : Colors.secondaryColor,
+            Platform.OS === 'android' ? Colors.primaryColor : 'white',
         },
-        headerTintColor: Platform.OS === 'android' ? 'white' : 'black',
+        headerTintColor:
+          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
       }}>
       <Stack.Screen
         name="Door"

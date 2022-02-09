@@ -1,8 +1,6 @@
 const ActionsTypes = {
-  LOGIN: 'auth/login',
+  AUTHENTICATE: 'auth/authenticate',
   LOGOUT: 'auth/logout',
-  AUTOLOGINSUCCESS: 'auth/autologinSuccess',
-  AUTOLOGINFFAILED: 'auth/autologinFailed',
 };
 
 export default ActionsTypes;
