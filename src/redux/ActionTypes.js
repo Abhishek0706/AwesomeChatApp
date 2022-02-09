@@ -1,8 +1,6 @@
-const ActionTypes = {
-  LOGIN: 'auth/login',
+const ActionsTypes = {
+  AUTHENTICATE: 'auth/authenticate',
   LOGOUT: 'auth/logout',
-  AUTOLOGINSUCCESS: 'auth/autologinSuccess',
-  AUTOLOGINFFAILED: 'auth/autologinFailed',
 };
 
-export default ActionTypes;
+export default ActionsTypes;

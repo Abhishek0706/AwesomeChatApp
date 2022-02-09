@@ -1,35 +1,30 @@
-import ActionTypes from '../ActionTypes';
-import LoginStatus from '../../constants/LoginStatus';
+import ActionsTypes from '../ActionTypes';
+import AuthStatus from '../../constants/AuthStatus';
 
 const initialState = {
+  email: null,
+  password: null,
   userId: null,
-  loginStatus: LoginStatus.CHECKING,
+  token: null,
+  authStatus: AuthStatus.CHECKING,
 };
 
 const AuthReducer = (state = initialState, action) => {
+  const { email, password, userId, token } = action?.payload || {};
   switch (action.type) {
-    case ActionTypes.LOGIN:
+    case ActionsTypes.AUTHENTICATE:
       return {
-        userId: action.payload.userId,
-        loginStatus: LoginStatus.LOGGEDIN,
+        email,
+        password,
+        userId,
+        token,
+        authStatus: AuthStatus.LOGGEDIN,
       };
 
-    case ActionTypes.AUTOLOGINSUCCESS:
+    case ActionsTypes.LOGOUT:
       return {
-        userId: action.payload.userId,
-        loginStatus: LoginStatus.LOGGEDIN,
-      };
-
-    case ActionTypes.LOGOUT:
-      return {
-        userId: null,
-        loginStatus: LoginStatus.LOGGEDOUT,
-      };
-
-    case ActionTypes.AUTOLOGINFFAILED:
-      return {
-        userId: null,
-        loginStatus: LoginStatus.LOGGEDOUT,
+        ...initialState,
+        authStatus: AuthStatus.LOGGEDOUT,
       };
 
     default:

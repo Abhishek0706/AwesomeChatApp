@@ -1,37 +1,44 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useSelector } from 'react-redux';
 
-import LoginScreen from '../screens/LoginScreen';
-import ChatScreen from '../screens/ChatScreen';
+import StartupScreen from '../screens/StartupScreen';
+import AuthScreen from '../screens/AuthScreen';
+import HomeNavigator from './HomeNavigator';
+import AuthStatus from '../constants/AuthStatus';
 import Colors from '../constants/Colors';
 import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
+  const { authStatus } = useSelector(state => state.auth);
+
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor:
-              Platform.OS === 'android'
-                ? Colors.primaryColor
-                : Colors.secondaryColor,
-          },
-          headerTintColor: Platform.OS === 'android' ? 'white' : 'black',
-        }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {authStatus === AuthStatus.CHECKING && (
+        <Stack.Screen name={'Startup'} component={StartupScreen} />
+      )}
+      {authStatus === AuthStatus.LOGGEDOUT && (
+        <Stack.Screen
+          name={'Auth'}
+          component={AuthScreen}
+          options={{
+            headerShown: true,
+            title: 'Authenticate',
+            headerStyle: {
+              backgroundColor:
+                Platform.OS === 'android' ? Colors.primaryColor : 'white',
+            },
+            headerTintColor:
+              Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+            headerTitleAlign: 'center',
+          }}
+        />
+      )}
+      {authStatus === AuthStatus.LOGGEDIN && (
+        <Stack.Screen name={'Home'} component={HomeNavigator} />
+      )}
     </Stack.Navigator>
   );
 };

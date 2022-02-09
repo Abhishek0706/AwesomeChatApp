@@ -1,9 +1,4 @@
 module.exports = {
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   env: {
     es2021: true,
     node: true,
@@ -19,5 +14,8 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'no-unused-vars': 'warn',
+  },
+  globals: {
+    fetch: false,
   },
 };

@@ -1,0 +1,5 @@
+export default {
+  CHECKING: 'CHECKING',
+  LOGGEDIN: 'lOGGEDIN',
+  LOGGEDOUT: 'LOGGEDOUT',
+};
