@@ -54,3 +54,6 @@ Ionicons : https://ionic.io/ionicons
 
 CryptoJs : https://www.npmjs.com/package/crypto-js
 
+## Kill Already running process on a port linux
+
+fuser -k <port>/tcp

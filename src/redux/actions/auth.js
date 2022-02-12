@@ -1,21 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionTypes from '../ActionTypes';
+import {
+  loginWithEmailandPassword,
+  signupWithEmailandPassword,
+} from '../../api/auth';
 
 export const authenticate = (email, password, signup = false) => {
-  const urlEndPoint = signup
-    ? 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDyCyxRNsGLh1Q_Azi8PnWo2J2dfpddqo4'
-    : 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDyCyxRNsGLh1Q_Azi8PnWo2J2dfpddqo4';
-
   return async dispatch => {
-    const response = await fetch(urlEndPoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-        returnSecureToken: true,
-      }),
-    });
+    const response = signup
+      ? await signupWithEmailandPassword(email, password)
+      : await loginWithEmailandPassword(email, password);
 
     if (!response.ok) {
       const errorData = await response.json();
