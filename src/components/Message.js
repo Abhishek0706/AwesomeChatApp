@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   textRight: {
     textAlign: 'right',
-    color: 'white',
+    color: Colors.onPrimary,
   },
 });
 
