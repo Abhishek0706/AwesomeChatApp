@@ -28,10 +28,10 @@ const RootNavigator = () => {
             title: 'Authenticate',
             headerStyle: {
               backgroundColor:
-                Platform.OS === 'android' ? Colors.primaryColor : 'white',
+                Platform.OS === 'android' ? Colors.primary : 'white',
             },
             headerTintColor:
-              Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+              Platform.OS === 'android' ? 'white' : Colors.primary,
             headerTitleAlign: 'center',
           }}
         />

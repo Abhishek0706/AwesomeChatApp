@@ -1,6 +1,7 @@
 export default {
-  primaryColor: 'dodgerblue',
-  secondaryColor: 'lightgrey',
+  primary: 'dodgerblue',
+  accent: 'yellow',
+  secondary: 'lightgrey',
   sentMessageBackground: 'dodgerblue',
   recievedMessageBackground: 'lightgrey',
   logoutButton: 'red',

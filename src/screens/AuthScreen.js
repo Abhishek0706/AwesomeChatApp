@@ -81,7 +81,7 @@ const AuthScreen = () => {
                 style={styles.button}
               />
             ) : (
-              <ActivityIndicator size={'large'} color={Colors.primaryColor} />
+              <ActivityIndicator size={'large'} color={Colors.primary} />
             )}
           </View>
           <TouchableText

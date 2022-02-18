@@ -6,7 +6,8 @@ import { Platform, StyleSheet } from 'react-native';
 import DoorScreen from '../screens/Home/DoorScreen';
 import ChatScreen from '../screens/Home/ChatScreen';
 import Colors from '../constants/Colors';
-import Button from '../components/UI/Button';
+import TouchableText from '../components/UI/TouchableText';
+
 import { logout } from '../redux/actions/auth';
 
 const Stack = createNativeStackNavigator();
@@ -23,19 +24,19 @@ const HomeNavigator = () => {
       initialRouteName="Door"
       screenOptions={{
         headerRight: () => (
-          <Button
+          <TouchableText
             title="Logout"
             onPress={logoutHandler}
-            style={styles.logoutButtonContainer}
+            textStyle={styles.logoutButton}
           />
         ),
         headerTitleAlign: 'left',
         headerStyle: {
           backgroundColor:
-            Platform.OS === 'android' ? Colors.primaryColor : 'white',
+            Platform.OS === 'android' ? Colors.primary : 'white',
         },
         headerTintColor:
-          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+          Platform.OS === 'android' ? 'white' : Colors.primary,
       }}>
       <Stack.Screen
         name="Door"
@@ -48,8 +49,9 @@ const HomeNavigator = () => {
 };
 
 const styles = StyleSheet.create({
-  logoutButtonContainer: {
-    backgroundColor: Colors.logoutButton,
+  logoutButton: {
+    color: Colors.accent,
+    fontSize: 14,
   },
 });
 

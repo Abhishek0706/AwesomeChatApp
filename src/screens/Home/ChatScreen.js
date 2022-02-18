@@ -71,7 +71,7 @@ const ChatScreen = ({ route, navigation }) => {
   if (loading) {
     return (
       <View style={styles.centeredView}>
-        <ActivityIndicator size={'large'} color={Colors.primaryColor} />
+        <ActivityIndicator size={'large'} color={Colors.primary} />
       </View>
     );
   } else {

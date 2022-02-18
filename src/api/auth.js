@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const apiKey = 'AIzaSyDyCyxRNsGLh1Q_Azi8PnWo2J2dfpddqo4';
 
 const endpoints = {
@@ -7,34 +9,35 @@ const endpoints = {
 };
 
 const loginWithEmailandPassword = async (email, password) => {
-  const response = await fetch(endpoints.login + '?key=' + apiKey, {
+  const response = await axios.request({
     method: 'POST',
+    url: endpoints.login,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
+    params: { key: apiKey },
+    data: {
       email,
       password,
       returnSecureToken: true,
-    }),
+    },
   });
-  const responseData = await response.json();
-  if (response.ok) return [responseData, null];
-  else return [null, responseData];
+  if (response.status === 200) return [response.data, null];
+  else return [null, response.data];
 };
 
 const signupWithEmailandPassword = async (email, password) => {
-  const response = await fetch(endpoints.signup + '?key=' + apiKey, {
+  const response = await axios.request({
     method: 'POST',
-
+    url: endpoints.signup,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
+    params: { key: apiKey },
+    data: {
       email,
       password,
       returnSecureToken: true,
-    }),
+    },
   });
-  const responseData = await response.json();
-  if (response.ok) return [responseData, null];
-  else return [null, responseData];
+  if (response.status === 200) return [response.data, null];
+  else return [null, response.data];
 };
 
 export { loginWithEmailandPassword, signupWithEmailandPassword };

@@ -22,7 +22,7 @@ Button.propTypes = {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.primary,
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
