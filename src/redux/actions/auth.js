@@ -7,19 +7,17 @@ import {
 
 export const authenticate = (email, password, signup = false) => {
   return async dispatch => {
-    const response = signup
+    const [successData, errorData] = signup
       ? await signupWithEmailandPassword(email, password)
       : await loginWithEmailandPassword(email, password);
 
-    if (!response.ok) {
-      const errorData = await response.json();
+    if (errorData) {
       throw new Error(errorData.error.message);
     }
 
-    const responseData = await response.json();
-    const userId = responseData.localId;
-    const token = responseData.idToken;
-    const expireTime = responseData.expiresIn * 1000;
+    const userId = successData.localId;
+    const token = successData.idToken;
+    const expireTime = successData.expiresIn * 1000;
     dispatch(setLogoutTimer(expireTime));
     saveUserData({ email, password });
     dispatch({

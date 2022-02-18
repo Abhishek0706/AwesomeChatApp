@@ -16,7 +16,9 @@ const loginWithEmailandPassword = async (email, password) => {
       returnSecureToken: true,
     }),
   });
-  return response;
+  const responseData = await response.json();
+  if (response.ok) return [responseData, null];
+  else return [null, responseData];
 };
 
 const signupWithEmailandPassword = async (email, password) => {
@@ -30,7 +32,9 @@ const signupWithEmailandPassword = async (email, password) => {
       returnSecureToken: true,
     }),
   });
-  return response;
+  const responseData = await response.json();
+  if (response.ok) return [responseData, null];
+  else return [null, responseData];
 };
 
 export { loginWithEmailandPassword, signupWithEmailandPassword };
