@@ -7,6 +7,8 @@ export default {
   secondaryDark: '#00a896',
   onPrimary: '#ffffff',
   onSecondary: '#000000',
-  sentMessageBackground: '1e90ff',
+  sentMessageBackground: '#1e90ff',
   recievedMessageBackground: 'lightgrey',
+  accent: 'yellow',
+  background: '#fffffe',
 };

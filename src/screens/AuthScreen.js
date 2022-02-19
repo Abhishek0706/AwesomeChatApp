@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'beige',
+    backgroundColor: Colors.background,
   },
   cardViewContainer: {
     width: Dimensions.get('window').width * 0.8,

@@ -5,25 +5,27 @@ import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import MessageInput from '../../components/MessageInput';
-import Message from '../../components/Message';
-import { Encrypt, Decrypt } from '../../utils/aes';
-import Colors from '../../constants/Colors';
+import MessageInput from '../components/MessageInput';
+import Message from '../components/Message';
+import { Encrypt, Decrypt } from '../utils/aes';
+import Colors from '../constants/Colors';
+import ChatHeaderRight from '../components/ChatHeaderRight';
+import ChatHeaderLeft from '../components/ChatHeaderLeft';
 
 const ChatScreen = ({ route, navigation }) => {
   const [messages, setMessage] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { userId, token } = useSelector(state => state.auth);
-
-  let roomId = route.params.roomId;
-  if (!roomId) roomId = 'General';
+  const roomId = useSelector(state => state.chat).currentRoomId || 'General';
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: roomId,
+      headerRight: () => <ChatHeaderRight />,
+      headerLeft: () => <ChatHeaderLeft />,
     });
-  }, []);
+  }, [roomId]);
 
   useEffect(() => {
     const unsubscribe = firestore()
@@ -44,7 +46,7 @@ const ChatScreen = ({ route, navigation }) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [roomId]);
 
   const sendMessageHandler = message => {
     if (message) {
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     padding: 5,
-    backgroundColor: 'white',
+    backgroundColor: Colors.background,
   },
   messageContainer: {
     marginVertical: 2,
