@@ -1,59 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  TextInput,
+  Text,
   StyleSheet,
-  TouchableWithoutFeedback,
+  FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import ModalCard from './UI/ModalCard';
+import { useSelector, useDispatch } from 'react-redux';
 
-import BorderView from './UI/BorderView';
-import Button from '../components/UI/Button';
 import { setCurrentRoomId } from '../redux/actions/chat';
 
 const ChooseRoomModal = ({ visible, setVisible }) => {
-  const [roomId, setRoomId] = useState('');
-
   const dispatch = useDispatch();
+  const { roomIdList } = useSelector(state => state.chat);
 
-  const openRoomHandler = () => {
-    if (roomId !== '') {
-      dispatch(setCurrentRoomId(roomId));
-    }
-    setRoomId('');
-    setVisible(false);
+  const listItemRendere = itemData => {
+    return (
+      <TouchableOpacity
+        style={styles.itemContainer}
+        onPress={() => {
+          dispatch(setCurrentRoomId(itemData.item));
+          setVisible(false);
+        }}>
+        <Text style={styles.itemText}>{itemData.item}</Text>
+      </TouchableOpacity>
+    );
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
+    <ModalCard
       visible={visible}
-      onRequestClose={() => setVisible(false)}>
-      <TouchableWithoutFeedback onPress={() => setVisible(false)}>
-        <View style={styles.screen}>
-          <TouchableWithoutFeedback>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              style={styles.modalView}>
-              <BorderView style={styles.textContainer}>
-                <TextInput
-                  value={roomId}
-                  onChangeText={setRoomId}
-                  onSubmitEditing={openRoomHandler}
-                  placeholder="Room ID"
-                />
-              </BorderView>
-              <Button title="GO" onPress={openRoomHandler} />
-            </KeyboardAvoidingView>
-          </TouchableWithoutFeedback>
-        </View>
-      </TouchableWithoutFeedback>
-    </Modal>
+      onRequestClose={() => setVisible(false)}
+      onPressOutside={() => setVisible(false)}>
+      <FlatList
+        style={styles.list}
+        data={roomIdList}
+        renderItem={listItemRendere}
+        ItemSeparatorComponent={() => <View style={styles.seperator} />}
+        contentContainerStyle={styles.listContainer}
+        showsVerticalScrollIndicator={false}
+      />
+    </ModalCard>
   );
 };
 
@@ -70,6 +59,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: '80%',
+    aspectRatio: 1,
     margin: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -87,10 +77,29 @@ const styles = StyleSheet.create({
     // for android
     elevation: 5,
   },
-  textContainer: {
-    borderRadius: 10,
-    width: '80%',
-    marginBottom: 20,
+  list: {
+    height: '100%',
+    width: '100%',
+  },
+  listContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    width: '100%',
+  },
+  itemContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 40,
+    padding: 5,
+  },
+  itemText: {
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  seperator: {
+    borderWidth: 1,
+    borderColor: 'lightgrey',
   },
 });
 

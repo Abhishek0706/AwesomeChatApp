@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { autoAuthenticate } from '../redux/actions/auth';
@@ -7,12 +7,12 @@ import { autoAuthenticate } from '../redux/actions/auth';
 const StartupScreen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(autoAuthenticate());
+    setTimeout(() => dispatch(autoAuthenticate()), 300);
   }, []);
 
   return (
     <View style={styles.screen}>
-      <ActivityIndicator size={'large'} />
+      <Text>Your Data is Completely Encrypted...</Text>
     </View>
   );
 };

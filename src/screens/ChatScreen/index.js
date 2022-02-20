@@ -5,12 +5,12 @@ import firestore from '@react-native-firebase/firestore';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import MessageInput from '../components/MessageInput';
-import Message from '../components/Message';
-import { Encrypt, Decrypt } from '../utils/aes';
-import Colors from '../constants/Colors';
-import ChatHeaderRight from '../components/ChatHeaderRight';
-import ChatHeaderLeft from '../components/ChatHeaderLeft';
+import MessageInput from '../../components/MessageInput';
+import Message from '../../components/Message';
+import { Encrypt, Decrypt } from '../../utils/aes';
+import Colors from '../../constants/Colors';
+import ChatHeaderRight from './ChatHeaderRight';
+import ChatHeaderLeft from './ChatHeaderLeft';
 
 const ChatScreen = ({ route, navigation }) => {
   const [messages, setMessage] = useState([]);

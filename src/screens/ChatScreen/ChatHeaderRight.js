@@ -3,12 +3,14 @@ import { View, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Colors from '../constants/Colors';
-import TouchableIcon from './UI/TouchableIcon';
-import { logout } from '../redux/actions/auth';
-import ChooseRoomModal from './ChooseRoomModal';
+import Colors from '../../constants/Colors';
+import TouchableIcon from '../../components/UI/TouchableIcon';
+import { logout } from '../../redux/actions/auth';
+import AddRoomModal from '../../components/AddRoomModal';
+import ChooseRoomModal from '../../components/ChooseRoomModal';
 
 const ChatHeaderRight = () => {
+  const [addRoomModalVisible, setAddRoomModalVisible] = useState(false);
   const [chooseRoomModalVisible, setChooseRoomModalVisible] = useState(false);
 
   const dispatch = useDispatch();
@@ -19,7 +21,13 @@ const ChatHeaderRight = () => {
   return (
     <View style={styles.headerRightContainer}>
       <TouchableIcon
-        name={'search-outline'}
+        name={'add-outline'}
+        onPress={() => setAddRoomModalVisible(true)}
+        size={25}
+        color={Colors.onPrimary}
+      />
+      <TouchableIcon
+        name={'list-outline'}
         onPress={() => setChooseRoomModalVisible(true)}
         size={25}
         color={Colors.onPrimary}
@@ -29,6 +37,10 @@ const ChatHeaderRight = () => {
         onPress={logoutHandler}
         size={25}
         color={Colors.accent}
+      />
+      <AddRoomModal
+        visible={addRoomModalVisible}
+        setVisible={setAddRoomModalVisible}
       />
       <ChooseRoomModal
         visible={chooseRoomModalVisible}
